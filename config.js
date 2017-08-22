@@ -6,7 +6,7 @@ var config = {
 	"err_logger": true,
  	"port": 3000,
 	"mongoose": {
-		"url": "localhost:27017/daylike_bot",
+		"url": "localhost:27017/wp_bot",
 		"user": "",
 		"pass": "",
 		"options": { "server": { "socketOptions": { "keepAlive": true }}}

@@ -25,19 +25,19 @@ const _ = require('lodash');
 const log4js = require('log4js');
 log4js.configure({
     appenders: {
-        daylike_bot_error: {
+        wp_bot_error: {
             type: 'file',
-            filename: 'daylike_bot_error.log'
+            filename: 'wp_bot_error.log'
         }
     },
     categories: {
         default: {
-            appenders: ['daylike_bot_error'],
+            appenders: ['wp_bot_error'],
             level: 'error'
         }
     }
 });
-const logger = log4js.getLogger('daylike_bot_error');
+const logger = log4js.getLogger('wp_bot_error');
 
 const TelegramBot = require('node-telegram-bot-api');
 const token = Config.token;
@@ -207,7 +207,7 @@ bot.onText(/\/wp_plugins( this)?/, (msg, match) => {
                             bot.sendMessage(msg.chat.id, '*Wordpress плагины:*\n' + html + '', html_Markdown, function(err, mess) {
                                 if (err) {
                                     Bot_msg_push(msg.chat.id, msg.message_id);
-                                    bot.sendMessage(msg.chat.id, "не могу вам напсать личным сообщением, добавите меня в чат @daylike_bot", html_Markdown);
+                                    bot.sendMessage(msg.chat.id, "не могу вам напсать личным сообщением, добавите меня в чат @wp_bot", html_Markdown);
                                 }
                             });
                             bot.deleteMessage(msg.chat.id, msg_id, function(err, mess) {
@@ -220,7 +220,7 @@ bot.onText(/\/wp_plugins( this)?/, (msg, match) => {
                             bot.sendMessage(msg.from.id, '*Wordpress плагины:*\n' + html + '', html_Markdown, function(err, mess) {
                                 if (err) {
                                     Bot_msg_push(msg.chat.id, msg.message_id);
-                                    bot.sendMessage(msg.chat.id, "не могу вам напсать личным сообщением, добавите меня в чат @daylike_bot", html_Markdown);
+                                    bot.sendMessage(msg.chat.id, "не могу вам напсать личным сообщением, добавите меня в чат @wp_bot", html_Markdown);
                                 }
                             });
 
