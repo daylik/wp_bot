@@ -18,10 +18,6 @@ const log = function(data) {
 const Config = require('./config');
 const fs = require('fs');
 const _ = require('lodash');
-
-
-
-
 const log4js = require('log4js');
 log4js.configure({
     appenders: {
@@ -61,7 +57,7 @@ const format_html = {
     disable_web_page_preview: true,
     disable_notification: true
 };
-const silent_and_no_previw = {
+const silent_and_no_preview = {
     disable_web_page_preview: true,
     disable_notification: true
 };
@@ -121,9 +117,7 @@ const send_err = function(err, text, msg_id) {
 }
 
 
-
-
-
+// /wp_add (cat number)  (Markdown text)
 bot.onText(/\/wp_add ((cat:)?([\w]+))[,\s]+((txt:)?([^\'\"]+))/, (msg, match) => {
     if (!is_bloklist(msg.from.id)) {
         if (isset(match[3]) && isset(match[6])) {
@@ -204,12 +198,7 @@ bot.onText(/\/wp_plugins( this)?/, (msg, match) => {
                         }
                         if (isset(match[1])) {
                             Bot_msg_push(msg.chat.id, msg.message_id);
-                            bot.sendMessage(msg.chat.id, '*Wordpress плагины:*\n' + html + '', html_Markdown, function(err, mess) {
-                                if (err) {
-                                    Bot_msg_push(msg.chat.id, msg.message_id);
-                                    bot.sendMessage(msg.chat.id, "не могу вам напсать личным сообщением, добавите меня в чат @wp_bot", html_Markdown);
-                                }
-                            });
+                            bot.sendMessage(msg.chat.id, '*Wordpress плагины:*\n' + html + '', html_Markdown);
                             bot.deleteMessage(msg.chat.id, msg_id, function(err, mess) {
                                 if (err) {
                                     log('Не могу удалитьсообение, не хватает прав!');
@@ -217,13 +206,7 @@ bot.onText(/\/wp_plugins( this)?/, (msg, match) => {
                             });
                         } else {
                             Bot_msg_push(msg.chat.id, msg.message_id);
-                            bot.sendMessage(msg.from.id, '*Wordpress плагины:*\n' + html + '', html_Markdown, function(err, mess) {
-                                if (err) {
-                                    Bot_msg_push(msg.chat.id, msg.message_id);
-                                    bot.sendMessage(msg.chat.id, "не могу вам напсать личным сообщением, добавите меня в чат @wp_bot", html_Markdown);
-                                }
-                            });
-
+                            bot.sendMessage(msg.from.id, '*Wordpress плагины:*\n' + html + '', html_Markdown);
                             bot.deleteMessage(msg.chat.id, msg_id, function(err, mess) {
                                 if (err) {
                                     log('Не могу удалитьсообение, не хватает прав!');
@@ -237,7 +220,7 @@ bot.onText(/\/wp_plugins( this)?/, (msg, match) => {
     }
 });
 
-//### WP
+//### WP // /wp_category (cat number)  (category Name - Markdown)
 bot.onText(/\/wp_category([\s]*([\w]+)[,\s]+([^\'\"]+))?/, function(msg, match) {
     if (!is_bloklist(msg.from.id)) {
         if (isset(match[1])) {
@@ -360,9 +343,7 @@ bot.onText(/\/start/, function(msg, match) {
 bot.onText(/\/[wpok]+ (yandex|y[a]*|google|g[o]*|plugin[s]?|.+)( (.*))?/i, function(msg, match) {
 
     if (!is_bloklist(msg.from.id)) {
-
         //log(msg);
-
         if (isset(match[1])) {
             var wp_comand = match[1].toLowerCase();
             if (wp_comand == 'info') {
@@ -372,41 +353,41 @@ bot.onText(/\/[wpok]+ (yandex|y[a]*|google|g[o]*|plugin[s]?|.+)( (.*))?/i, funct
 
             if (wp_comand == 'linux cmd') {
                 Bot_msg_push(msg.chat.id, msg.message_id);
-                bot.sendMessage(msg.chat.id, 'http://dobryjhosting.ru/vps-vds/linux-commands', silent_and_no_previw);
+                bot.sendMessage(msg.chat.id, 'http://dobryjhosting.ru/vps-vds/linux-commands', silent_and_no_preview);
             }
 
             if (wp_comand == 'plugin') {
                 if (isset(match[3])) {
                     Bot_msg_push(msg.chat.id, msg.message_id);
-                    bot.sendMessage(msg.chat.id, 'https://wordpress.org/plugins/' + match[3].toLowerCase().replace(/[\s]+/gi, "-"), silent_and_no_previw);
+                    bot.sendMessage(msg.chat.id, 'https://wordpress.org/plugins/' + match[3].toLowerCase().replace(/[\s]+/gi, "-"), silent_and_no_preview);
                 }
             } else if (wp_comand == 'plugins') {
                 if (isset(match[3])) {
                     Bot_msg_push(msg.chat.id, msg.message_id);
-                    bot.sendMessage(msg.chat.id, 'https://wordpress.org/plugins/search/' + match[3].toLowerCase(), silent_and_no_previw);
+                    bot.sendMessage(msg.chat.id, 'https://wordpress.org/plugins/search/' + match[3].toLowerCase(), silent_and_no_preview);
                 } else {
                     Bot_msg_push(msg.chat.id, msg.message_id);
-                    bot.sendMessage(msg.chat.id, 'https://wordpress.org/plugins/search/', silent_and_no_previw);
+                    bot.sendMessage(msg.chat.id, 'https://wordpress.org/plugins/search/', silent_and_no_preview);
                 }
             }
             // /(ok|wp)   (y|ya|yandex|g|go|google)    (поисковой запрос)
             if (/google|g[o]*/.test(wp_comand)) {
                 if (isset(match[3])) {
                     Bot_msg_push(msg.chat.id, msg.message_id);
-                    bot.sendMessage(msg.chat.id, 'https://www.google.ru/search?q=' + match[3].replace(/[\s]+/gi, "+"), silent_and_no_previw);
+                    bot.sendMessage(msg.chat.id, 'https://www.google.ru/search?q=' + match[3].replace(/[\s]+/gi, "+"), silent_and_no_preview);
                 }
             }
 
             if (/yandex|y[a]*/.test(wp_comand)) {
                 if (isset(match[3])) {
                     Bot_msg_push(msg.chat.id, msg.message_id);
-                    bot.sendMessage(msg.chat.id, 'https://yandex.ru/search/?text=' + match[3].replace(/[\s]+/gi, "%20"), silent_and_no_previw);
+                    bot.sendMessage(msg.chat.id, 'https://yandex.ru/search/?text=' + match[3].replace(/[\s]+/gi, "%20"), silent_and_no_preview);
                 }
             }
 
             if (wp_comand == 'latest') {
                 Bot_msg_push(msg.chat.id, msg.message_id);
-                bot.sendMessage(msg.chat.id, 'https://ru.wordpress.org/latest-ru_RU.zip', silent_and_no_previw);
+                bot.sendMessage(msg.chat.id, 'https://ru.wordpress.org/latest-ru_RU.zip', silent_and_no_preview);
             }
         }
     }
