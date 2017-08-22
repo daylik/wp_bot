@@ -22,5 +22,9 @@
     {
         "cat": "6",
         "txt": "[Easy Testimonials](https://ru.wordpress.org/plugins/easy-testimonials/) - добавлять отзывы самому"
+    },
+    {
+        "cat": "7",
+        "txt": "[Pageviews](https://pageviews.io/) - лёгкий счетчик просмотров"
     }
 ]
