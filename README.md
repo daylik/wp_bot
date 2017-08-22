@@ -4,7 +4,9 @@ mongodb client: robomingo
 
 ## install
 cmd in folder:
+
 `npm install`
+
 `node index.js`
 
 Команда: */wp_plugins* — показывает список плагинов для wordpress
@@ -17,14 +19,14 @@ cmd in folder:
 
 Добавляем новую категорию (если надо):
 
-*/wp_category (category_id) (text:Markdown)*
+`/wp_category (category_id) (text:Markdown)`
 
-*/wp_category 3 SEO*
+`/wp_category 3 SEO`
 
 Добавляем запись в категорию:
 
-/wp_add (id категории) [Название плагина](url обычно на офф сайте wordpress) - Описание если надо
-(разметка Markdown)
+`/wp_add (id категории) [Название плагина](url обычно на офф сайте wordpress) - Описание если надо
+(разметка Markdown)`
 
-/wp_add 3 [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) - Хороший плагин для SEO
+`/wp_add 3 [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) - Хороший плагин для SEO`
 
