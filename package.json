@@ -1,0 +1,21 @@
+{
+  "name": "telegram-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "async": "^2.5.0",
+    "lodash": "^4.17.4",
+    "node-telegram-bot-api": "github:yagop/node-telegram-bot-api#experimental"
+  },
+  "devDependencies": {
+    "log4js": "^2.3.3",
+    "mongoose": "^4.11.7",
+    "syslog-client": "^1.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oleg M.",
+  "license": "ISC"
+}
