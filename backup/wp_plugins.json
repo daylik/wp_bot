@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "5994cbfed954978c0805e461",
+    "cat": "2",
+    "txt": "[iw-magnific-popup](https://wordpress.org/plugins/iw-magnific-popup/) | [documentation](http://dimsemenov.com/plugins/magnific-popup/documentation.html) - Модальные окна",
+    "__v": 0
+  },
+  {
+    "_id": "5994cfceeda08cdc38d1fa16",
+    "cat": "3",
+    "txt": "[Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)  - Хороший плагин для SEO",
+    "__v": 0
+  },
+  {
+    "_id": "5994d0179df066d0b885fc40",
+    "cat": "4",
+    "txt": "[DB search and replace](https://interconnectit.com/products/search-and-replace-for-wordpress-databases/) - Скрипт смены доменных имён",
+    "__v": 0
+  },
+  {
+    "_id": "5994d1d11e8e74a2203e4720",
+    "cat": "5",
+    "txt": "[Carbon](https://carbonfields.net) | [(RU) docs на wp-kama](https://wp-kama.ru/id_8542/carbon-fields-obzor-plagina-i-nachalo-raboty.html)",
+    "__v": 0
+  },
+  {
+    "_id": "5994d1ecc473abd6d4379494",
+    "cat": "6",
+    "txt": "[Strong Testimonials](https://ru.wordpress.org/plugins/strong-testimonials/) - Конструктор форм и отображения отзывов",
+    "__v": 0
+  },
+  {
+    "_id": "5995f0113ddb0cf9406661a5",
+    "cat": "6",
+    "txt": "[Easy Testimonials](https://ru.wordpress.org/plugins/easy-testimonials/) - добавлять отзывы самому",
+    "__v": 0
+  },
+  {
+    "_id": "5998615851ff45744cbf9e1a",
+    "cat": "7",
+    "txt": "[Pageviews](https://wordpress.org/plugins/pageviews/) - Вывод количества просмотров",
+    "__v": 0
+  },
+  {
+    "_id": "599aca43df1fb5a46cf56d5d",
+    "cat": "8",
+    "txt": "[duplicate-post](https://ru.wordpress.org/plugins/duplicate-post/) - Клонирование записей",
+    "__v": 0
+  }
+]
