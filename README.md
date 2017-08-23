@@ -41,6 +41,7 @@ cmd in folder:
 `/wp_add 3 [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) - Хороший плагин для SEO`
 
 ## Быстрые поисковые запросы
+##### для Google
 
 `/ok google поисковой запрос`
 
@@ -48,6 +49,7 @@ cmd in folder:
 
 `/ok g поисковой запрос`
 
+##### для Yandex
 
 `/ok yandex поисковой запрос`
 
