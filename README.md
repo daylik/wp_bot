@@ -11,6 +11,10 @@ cmd in folder:
 
 `node index.js`
 
+`/import wp_category`
+
+`/import wp_plugins`
+
 Команда: */wp info* — показывает сообщение с общей информацией
 
 Команда: */wp lates* — присылает ссылку на cms wordpress последней версии с оффю сайта
@@ -39,6 +43,16 @@ cmd in folder:
 (разметка Markdown)`
 
 `/wp_add 3 [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/) - Хороший плагин для SEO`
+
+## ( Export / Import ) mongodb data
+
+Команда: */export wp_plugins* — Экспорт данных из mongodb коллекции wp_plugins сохраняется в /backup/wp_plugins.json 
+
+Команда: */import wp_plugins* — Импорт из /backup/wp_plugins.json данных в mongodb в коллекцию wp_plugins
+
+Команда: */export wp_category* — Экспорт данных из mongodb коллекции wp_categories сохраняется в /backup/wp_categories.json 
+
+Команда: */import wp_category* — Импорт из /backup/wp_categories.json данных в mongodb в коллекцию wp_plugins
 
 ## Быстрые поисковые запросы
 ##### для Google
