@@ -93,12 +93,11 @@ const WP_plugin = mongoose.model('Wp_plugin', WP_schema);
 global.bot_msgs = [];
 Bot_msg_push = function(chat, msg) {
     msg++;
-    console.log(chat + '  ' + msg);
+    console.log('bot send to: 'chat + '  ' + msg);
     global.bot_msgs.push({
         'chat_id': chat,
         'msg_id': msg
     });
-    console.log(global.bot_msgs);
 };
 
 const send_err = function(err, text, msg_id) {
@@ -116,6 +115,11 @@ const send_err = function(err, text, msg_id) {
     }
 }
 
+const BOT_send_msg = function(chat_id, message_id, send_text, options) {
+    log(send_text + '\n');
+    Bot_msg_push(chat_id, message_id);
+    bot.sendMessage(chat_id, send_text, options);
+}
 
 // /wp_add (cat number)  (Markdown text)
 bot.onText(/\/wp_add ((cat:)?([\w]+))[,\s]+((txt:)?([^\'\"]+))/, (msg, match) => {
@@ -277,6 +281,8 @@ bot.onText(/\/wp_category([\s]*([\w]+)[,\s]+([^\'\"]+))?/, function(msg, match) 
     }
 });
 
+
+
 bot.onText(/\/clear/, function(msg, match) {
     if (!is_bloklist(msg.from.id)) {
 
@@ -303,6 +309,102 @@ bot.onText(/\/clear/, function(msg, match) {
     }
 });
 
+//BACKUP data
+bot.onText(/\/export (wp_category|wp_plugins)/i, function(msg, match){
+    if (msg.from.id == Config.admin_id) {
+
+        if (match[1] == 'wp_category') {
+            WP_category.find(function(err, wp_category) {
+                if (err) {
+                    log(err);
+                } else {
+                    data_arr = JSON.stringify(wp_category, "", 2);
+
+                    fs.writeFile('backup/wp_categories.json', data_arr, 'utf8', function(err) {
+                        if (err) {
+                            log(err);
+                        } else {
+                            var send_text = 'Коллекция wp_categories экспортирована в /backup/wp_categories.json!';
+                            BOT_send_msg(msg.chat.id, msg.message_id, send_text, silent_and_no_previw);
+                        }
+                    });
+                }
+            });
+        } 
+
+        if (match[1] == 'wp_plugins') {
+            WP_plugin.find(function(err, wp_plugins) {
+                if (err) {
+                    log(err);
+                } else {
+                    data_arr = JSON.stringify(wp_plugins, "", 2);
+
+                    fs.writeFile('backup/wp_plugins.json', data_arr, 'utf8', function(err) {
+                        if (err) {
+                            log(err);
+                        } else {
+                            var send_text = 'Коллекция wp_plugins экспортирована в /backup/wp_plugins.json!';
+                            BOT_send_msg(msg.chat.id, msg.message_id, send_text, silent_and_no_previw);
+                        }
+                    });
+                }
+            });
+        }
+    }
+});
+
+bot.onText(/\/import (wp_category|wp_plugins)/i, function(msg, match) {
+    if (msg.from.id == Config.admin_id) {
+
+        if (match[1] == 'wp_category') {
+
+            fs.readFile('backup/wp_categories.json', 'utf8', function(err, data) {
+                if (err) {
+                    var send_text = 'Ошибка чтения файла backup/wp_categories.json';
+                    BOT_send_msg(msg.chat.id, msg.message_id, send_text, silent_and_no_previw);
+                    throw err;
+                }
+
+                var send_arr = JSON.parse(data);
+
+                WP_category.insertMany(send_arr, function(err, docs) {
+                    if (err) {
+                        var send_text = 'Ошибка сохранения в базу из файла backup/wp_categories.json';
+                        BOT_send_msg(msg.chat.id, msg.message_id, send_text, silent_and_no_previw);
+                        log(err);
+                    } else {
+                        var send_text = 'Данные из файла backup/wp_categories.json успешно сохраненены в базу';
+                        BOT_send_msg(msg.chat.id, msg.message_id, send_text, silent_and_no_previw);
+                    }
+                });
+            });
+        }
+
+        if (match[1] == 'wp_plugins') {
+
+            fs.readFile('backup/wp_plugins.json', 'utf8', function(err, data) {
+                if (err) {
+                    var send_text = 'Ошибка чтения файла backup/wp_plugins.json';
+                    BOT_send_msg(msg.chat.id, msg.message_id, send_text, silent_and_no_previw);
+                    throw err;
+                }
+
+                var send_arr = JSON.parse(data);
+
+                WP_plugin.insertMany(send_arr, function(err, docs) {
+                    if (err) {
+                        var send_text = 'Ошибка сохранения в базу из файла backup/wp_plugins.json';
+                        BOT_send_msg(msg.chat.id, msg.message_id, send_text, silent_and_no_previw);
+                        log(err);
+                    } else {
+                        var send_text = 'Данные из файла backup/wp_plugins.json успешно сохраненены в базу';
+                        BOT_send_msg(msg.chat.id, msg.message_id, send_text, silent_and_no_previw);
+                    }
+                });
+            });
+        }
+    }
+});
 
 var info_html = 'Официальный сайт Wordpress:\n' +
     '[wordpress.org](https://wordpress.org) и [ru.wordpress.org](https://ru.wordpress.org)\n' +
